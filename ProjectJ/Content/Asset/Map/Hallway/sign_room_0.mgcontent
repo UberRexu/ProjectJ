@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/Hallway/../../../../Asset/Map/Hallway/sign_room.tsx</SourceFile>
+  <SourceTime>2022-10-18T05:22:11.4046085+07:00</SourceTime>
+  <DestFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/bin/Windows/Content/../../../Asset/Map/Hallway/sign_room_0.xnb</DestFile>
+  <DestTime>2022-10-18T06:46:05.5221277+07:00</DestTime>
+  <Importer>TiledMapTilesetImporter</Importer>
+  <ImporterTime>2020-08-30T00:17:30+07:00</ImporterTime>
+  <Processor>TiledMapTilesetProcessor</Processor>
+  <ProcessorTime>2020-08-30T00:17:30+07:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset>
+    <string>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/bin/Windows/Content/../../../Asset/Map/Hallway/sign_room_1.xnb</string>
+  </BuildAsset>
+  <BuildOutput />
+</PipelineBuildEvent>

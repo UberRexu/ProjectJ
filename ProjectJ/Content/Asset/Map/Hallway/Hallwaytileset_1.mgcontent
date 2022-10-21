@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/Hallway/../../../../Asset/Map/Hallway/Hallwaytileset.png</SourceFile>
+  <SourceTime>2022-10-18T05:14:21.4257767+07:00</SourceTime>
+  <DestFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/bin/Windows/Content/../../../Asset/Map/Hallway/Hallwaytileset_1.xnb</DestFile>
+  <DestTime>2022-10-18T06:46:05.5321298+07:00</DestTime>
+  <Importer>TextureImporter</Importer>
+  <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
+  <Processor>TextureProcessor</Processor>
+  <ProcessorTime>2020-08-10T23:17:54+07:00</ProcessorTime>
+  <Parameters>
+    <Key>ColorKeyColor</Key>
+    <Value>0,0,0,0</Value>
+  </Parameters>
+  <Parameters>
+    <Key>ColorKeyEnabled</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
