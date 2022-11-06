@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/Office/../../../../Asset/Map/Office/office_tileset.png</SourceFile>
+  <SourceTime>2022-10-21T10:01:54+07:00</SourceTime>
+  <DestFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/bin/Windows/Content/../../../Asset/Map/Office/office_tileset_0.xnb</DestFile>
+  <DestTime>2022-10-30T06:17:09.2199637+07:00</DestTime>
+  <Importer>TextureImporter</Importer>
+  <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
+  <Processor>TextureProcessor</Processor>
+  <ProcessorTime>2020-08-10T23:17:54+07:00</ProcessorTime>
+  <Parameters>
+    <Key>ColorKeyColor</Key>
+    <Value>0,0,0,0</Value>
+  </Parameters>
+  <Parameters>
+    <Key>ColorKeyEnabled</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

@@ -12,36 +12,60 @@ namespace ProjectJ
 {
     public class PlayerEntity : IEntity
     {
-        private readonly Game1 _game;
+        Game1 _game;
         public int Velocity = 4;
         Vector2 move;
-        public IShapeF Bounds { get; }
+        public Vector2 PlayerPos;
+        public IShapeF Bounds { get;}
         private KeyboardState currentKey;
         private KeyboardState oldKey;
         private AnimatedSprite playerSprite;
         string animation;
+        Rectangle Player;
+        public bool enterRoom;
+        public bool interact;
+        public bool playerCanMove = true;
+        public bool havebook = false;
+        public bool openbook = false;
+        public bool havekey1 = false; //For C205
+        public bool havekey2 = false; //For Flashlight
+        public bool havekey3 = false; //FlashLight
+        public bool pause = false;
+        Texture2D RulesBook;
         public PlayerEntity(Game1 game, IShapeF circleF, AnimatedSprite playerSprite)
         {
             _game = game;
             Bounds = circleF;
             animation = "idle_down";
             playerSprite.Play(animation);
+            PlayerPos.X = 1195;
+            PlayerPos.Y = 146;
+            Bounds.Position = PlayerPos;
             this.playerSprite = playerSprite;
+            RulesBook = game.Content.Load<Texture2D>("RulesBook/rules-book2");
+        }
+        public virtual void Initialize()
+        {
+
+        }
+        public virtual void LoadContent()
+        {
+
         }
         public virtual void Update(GameTime gameTime)
         {
+            Player = new Rectangle((int)Bounds.Position.X, (int)Bounds.Position.Y, 40, 68);
+            Bounds.Position = PlayerPos;
             currentKey = Keyboard.GetState();
+            
             //Walk Up
-            if (currentKey.IsKeyDown(Keys.W) && Bounds.Position.Y > 0)
+            if (currentKey.IsKeyDown(Keys.W) && Bounds.Position.Y > 0 && playerCanMove == true)
             {
                 animation = "walk_up";
                 playerSprite.Effect = SpriteEffects.None;
                 move = new Vector2(0, -Velocity) * gameTime.GetElapsedSeconds() * 50;
-                if (Bounds.Position.X - _game.GetCameraPosY() <= _game.GetMapHeight() && _game.GetCameraPosY() > 0)
-                {
-                    _game.UpdateCamera(move);
-                }
-                Bounds.Position += move;
+                _game.UpdateCamera(move);
+                PlayerPos.Y += move.Y;
             }
             else if (oldKey.IsKeyDown(Keys.W) && currentKey.IsKeyUp(Keys.W))
             {
@@ -50,16 +74,13 @@ namespace ProjectJ
             }
 
             //Walk Down
-            if (currentKey.IsKeyDown(Keys.S) && Bounds.Position.Y < _game.GetMapHeight() - ((RectangleF)Bounds).Height)
+            if (currentKey.IsKeyDown(Keys.S) && Bounds.Position.Y < _game.GetMapHeight() && playerCanMove == true)
             {
                 animation = "walk_down";
                 playerSprite.Effect = SpriteEffects.None;
                 move = new Vector2(0, Velocity) * gameTime.GetElapsedSeconds() * 50;
-                if (Bounds.Position.Y - _game.GetCameraPosY() <= _game.GetMapWidth() && _game.GetCameraPosY() < _game.GetMapHeight() - _game.GetScreenHeight())
-                {
-                    _game.UpdateCamera(move);
-                }
-                Bounds.Position += move;
+                _game.UpdateCamera(move);
+                PlayerPos.Y += move.Y;
             }
             else if (oldKey.IsKeyDown(Keys.S) && currentKey.IsKeyUp(Keys.S))
             {
@@ -68,16 +89,13 @@ namespace ProjectJ
             }
 
             //Walk Left
-            if (currentKey.IsKeyDown(Keys.A) && Bounds.Position.X > 0)
+            if (currentKey.IsKeyDown(Keys.A) && Bounds.Position.X > 0 && playerCanMove == true)
             {
                 animation = "walk_left";
                 playerSprite.Effect = SpriteEffects.None;
                 move = new Vector2(-Velocity, 0) * gameTime.GetElapsedSeconds() * 50;
-                if (Bounds.Position.X - _game.GetCameraPosX() <= _game.GetMapWidth() && _game.GetCameraPosX() > 0)
-                {
-                    _game.UpdateCamera(move);
-                }
-                Bounds.Position += move;
+                _game.UpdateCamera(move);
+                PlayerPos.X += move.X;
             }
             else if (oldKey.IsKeyDown(Keys.A) && currentKey.IsKeyUp(Keys.A))
             {
@@ -86,27 +104,53 @@ namespace ProjectJ
             }
 
             //Walk Right
-            if (currentKey.IsKeyDown(Keys.D) && Bounds.Position.X < _game.GetMapWidth() - ((RectangleF)Bounds).Width)
+            if (currentKey.IsKeyDown(Keys.D) && Bounds.Position.Y < _game.GetMapWidth() && playerCanMove == true)
             {
                 animation = "walk_right";
                 playerSprite.Effect = SpriteEffects.None;
                 move = new Vector2(Velocity, 0) * gameTime.GetElapsedSeconds() * 50;
-                if (Bounds.Position.X - _game.GetCameraPosX() <= _game.GetMapWidth() && _game.GetCameraPosX() < _game.GetMapWidth() - _game.GetScreenWidth())
-                {
-                    _game.UpdateCamera(move);
-                }
-                Bounds.Position += move;
+                _game.UpdateCamera(move);
+                PlayerPos.X += move.X;
             }
             else if (oldKey.IsKeyDown(Keys.D) && currentKey.IsKeyUp(Keys.D))
             {
                 animation = "idle_right";
                 playerSprite.Effect = SpriteEffects.None;
             }
-
-            oldKey = currentKey;
             playerSprite.Play(animation);
             playerSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            oldKey = currentKey;
+
+            //Interact
+            if (currentKey.IsKeyDown(Keys.E))
+            {
+                interact = true;
+            }
+            else
+            {
+                interact = false;
+
+            }
+            if (currentKey.IsKeyDown(Keys.Tab))
+            {
+                openbook = true;
+            }
+            else
+            {
+                openbook = false;
+            }
+            if(currentKey.IsKeyDown(Keys.Escape))
+            {
+                pause = true;
+                _game.pause = true;
+            }
+            else
+            {
+                pause = false;
+                _game.pause = false;
+            }
         }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawRectangle((RectangleF)Bounds, Color.White, 0f);
@@ -117,17 +161,49 @@ namespace ProjectJ
 
             if (collisionInfo.Other.ToString().Contains("Collider"))
             {
-                Bounds.Position -= collisionInfo.PenetrationVector;
+                PlayerPos.X -= collisionInfo.PenetrationVector.X;
+                PlayerPos.Y -= collisionInfo.PenetrationVector.Y;
+                _game._cameraPosition -= collisionInfo.PenetrationVector;
+            }
+            if (collisionInfo.Other.ToString().Contains("Door"))
+            {
+                enterRoom = true;
+            }
+            if (collisionInfo.Other.ToString().Contains("Table"))
+            {
+                PlayerPos.X -= collisionInfo.PenetrationVector.X;
+                PlayerPos.Y -= collisionInfo.PenetrationVector.Y;
+                _game._cameraPosition -= collisionInfo.PenetrationVector;
+            }
+            if (collisionInfo.Other.ToString().Contains("Key_locker"))
+            {
+                PlayerPos.Y -= collisionInfo.PenetrationVector.Y;
+                PlayerPos.X -= collisionInfo.PenetrationVector.X;
+            }
+            if (collisionInfo.Other.ToString().Contains("Locked_door"))
+            {
+                PlayerPos.X -= collisionInfo.PenetrationVector.X;
+                PlayerPos.Y -= collisionInfo.PenetrationVector.Y;
+                _game._cameraPosition -= collisionInfo.PenetrationVector;
+            }
+            if (collisionInfo.Other.ToString().Contains("LabDoor"))
+            {
+                PlayerPos.X -= collisionInfo.PenetrationVector.X;
+                PlayerPos.Y -= collisionInfo.PenetrationVector.Y;
                 _game._cameraPosition -= collisionInfo.PenetrationVector;
             }
         }
-        public float GetPlayerPosX()
+        public bool OpenRuleBook()
         {
-            return Bounds.Position.X;
-        }
-        public float GetPlayerPosY()
-        {
-            return Bounds.Position.Y;
+            if (openbook == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                
         }
     }
 }

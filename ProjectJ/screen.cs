@@ -38,5 +38,9 @@ namespace ProjectJ
         {
 
         }
+        protected virtual void UnloadContent()
+        {
+            
+        }
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/Office/../../../../Asset/Map/Office/office-tileset.tsx</SourceFile>
+  <SourceTime>2022-10-30T06:14:46.0310904+07:00</SourceTime>
+  <DestFile>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/bin/Windows/Content/../../../Asset/Map/Office/office-tileset_0.xnb</DestFile>
+  <DestTime>2022-10-30T06:17:09.2209637+07:00</DestTime>
+  <Importer>TiledMapTilesetImporter</Importer>
+  <ImporterTime>2020-08-30T00:17:30+07:00</ImporterTime>
+  <Processor>TiledMapTilesetProcessor</Processor>
+  <ProcessorTime>2020-08-30T00:17:30+07:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset>
+    <string>D:/Work/Year 2/Sem 1/ProjectJ/ProjectJ/ProjectJ/Content/bin/Windows/Content/../../../Asset/Map/Office/office_tileset_0.xnb</string>
+  </BuildAsset>
+  <BuildOutput />
+</PipelineBuildEvent>
